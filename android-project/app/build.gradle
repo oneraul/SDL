@@ -40,7 +40,7 @@ android {
         externalNativeBuild {
             cmake {
                 version = "3.22.3"
-                path '../../Noobcreate/CMakeLists.txt'
+                path '../../../Noobcreate/CMakeLists.txt'
             }
         }
        
@@ -58,6 +58,17 @@ android {
                     output.outputFile = new File(outputFile.parent, fileName);
                 }
             }
+        }
+    }
+
+    task PreBuild {
+        println "Copying assets folder."
+        copy {
+            from "../../../Noobcreate/res"
+            into "./src/main/assets/res"
+            exclude "*.vert"
+            exclude "*.frag"
+            exclude "*.exe"
         }
     }
 }
